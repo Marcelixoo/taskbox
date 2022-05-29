@@ -5,38 +5,41 @@ export const TASK_ARCHIVED = 'TASK_ARCHIVED';
 export const TASK_INBOX = 'TASK_INBOX';
 export const TASK_PINNED = 'TASK_PINNED';
 
-function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
+function Task({ task, onArchiveTask, onPinTask }) {
+  const { id, title, state } = task;
   return (
-    <div className={`list-item ${state}`}>
+    <li data-testid={`task-${id}`} className={`list-item ${state}`}>
       <label className="checkbox">
         <input
+          data-testid={`input-${id}`}
           type="checkbox"
           checked={state === TASK_ARCHIVED}
           disabled={true}
           name="checked"
         />
         <span
+          data-testid={`clickable-${id}`}
           className="checkbox-custom"
-          onClick={() => onArchiveTask(id)}
+          onClick={() => onArchiveTask(task)}
           id={`archiveTask-${id}`}
           aria-label={`archiveTask-${id}`}
         />
       </label>
 
       <label className="title">
-        <input type="text" value={title} readOnly={true} placeholder="Input title" />
+        <input data-testid={`title-${id}`} type="text" value={title} readOnly={true} placeholder="Input title" />
       </label>
 
       <div className="actions" onClick={e => e.stopPropagation()}>
         {state !== TASK_ARCHIVED && (
-          <a onClick={() => onPinTask(id)}>
+          <a onClick={() => onPinTask(task)}>
             <span className="icon-star" id={`pinTask-${id}`} aria-label={`pinTask-${id}`} />
           </a>
         )}
 
       </div>
 
-    </div>
+    </li>
   )
 }
 

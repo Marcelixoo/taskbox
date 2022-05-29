@@ -60,16 +60,21 @@ function useTaskBox() {
   };
 }
 
+const toggleValues = (one, another) => ({
+  basedOn: (predicate) => predicate === one ? another : one,
+})
+
 export function TaskList() {
   /** Get initial state from the store */
   const { tasks, status, dispatch } = useTaskBox();
 
-  const pinTask = (value) => {
-    dispatch(updateTaskState({ id: value, newTaskState: TASK_PINNED }));
+  const pinTask = ({ id, state }) => {
+    const newTaskState = toggleValues(TASK_INBOX, TASK_PINNED).basedOn(state);
+    dispatch(updateTaskState({ id, newTaskState }));
   }
 
-  const archiveTask = (value) => {
-    dispatch(updateTaskState({ id: value, newTaskState: TASK_ARCHIVED }));
+  const archiveTask = ({ id }) => {
+    dispatch(updateTaskState({ id, newTaskState: TASK_ARCHIVED }));
   }
 
   if (status === 'loading') {
@@ -82,15 +87,14 @@ export function TaskList() {
 
   const tasksInOrder = [
     ...tasks.filter((t) => t.state === TASK_PINNED),
-    ...tasks.filter((t) => t.state !== TASK_PINNED)
-  ]
+    ...tasks.filter((t) => t.state === TASK_INBOX),
+    ...tasks.filter((t) => t.state === TASK_ARCHIVED),
+  ];
 
   return (
     <ul data-testid="task-list">
       {tasksInOrder.map((task) => (
-        <li key={task.id}>
-          <Task task={task} onArchiveTask={() => archiveTask(task.id)} onPinTask={() => pinTask(task.id)} />
-        </li>
+        <Task key={task.id} task={task} onArchiveTask={archiveTask} onPinTask={pinTask} />
       ))}
     </ul>
   );
