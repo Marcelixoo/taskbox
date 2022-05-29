@@ -27,7 +27,7 @@ function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
         <input type="text" value={title} readOnly={true} placeholder="Input title" />
       </label>
 
-      <div className="actions" onClcik={e => e.stopPropagation()}>
+      <div className="actions" onClick={e => e.stopPropagation()}>
         {state !== TASK_ARCHIVED && (
           <a onClick={() => onPinTask(id)}>
             <span className="icon-star" id={`pinTask-${id}`} aria-label={`pinTask-${id}`} />
