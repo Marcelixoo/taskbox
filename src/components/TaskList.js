@@ -50,7 +50,7 @@ export function TaskList({ tasks, loading, onPinTask, onArchiveTask }) {
   ]
 
   return (
-    <ul>
+    <ul data-testid="task-list">
       {tasksInOrder.map((task) => (
         <li key={task.id}>
           <Task task={task} onArchiveTask={onArchiveTask} onPinTask={onPinTask} />
