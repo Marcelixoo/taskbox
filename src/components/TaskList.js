@@ -44,7 +44,7 @@ function useTaskBox() {
       ...state.taskbox.tasks.filter((t) => t.state !== TASK_PINNED),
     ];
     const filteredTasks = tasksInOrder.filter(
-      (t) => t.state === TASK_INBOX || t.state === TASK_PINNED
+      (t) => [TASK_INBOX, TASK_PINNED, TASK_ARCHIVED].includes(t.state)
     );
     return filteredTasks;
   });
