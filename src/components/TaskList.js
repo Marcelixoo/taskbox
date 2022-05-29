@@ -1,8 +1,10 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Task, { TASK_PINNED } from './Task';
+import Task, { TASK_ARCHIVED, TASK_INBOX, TASK_PINNED } from './Task';
+
+import { updateTaskState } from '../store';
 
 const LoadingRow = () => (
   <div className="loading-item">
@@ -34,9 +36,43 @@ const Empty = () => (
   </div>
 )
 
-export function TaskList({ tasks, loading, onPinTask, onArchiveTask }) {
+function useTaskBox() {
+  /** Get initial state from the store */
+  const tasks = useSelector((state) => {
+    const tasksInOrder = [
+      ...state.taskbox.tasks.filter((t) => t.state === TASK_PINNED),
+      ...state.taskbox.tasks.filter((t) => t.state !== TASK_PINNED),
+    ];
+    const filteredTasks = tasksInOrder.filter(
+      (t) => t.state === TASK_INBOX || t.state === TASK_PINNED
+    );
+    return filteredTasks;
+  });
 
-  if (loading) {
+  const { status } = useSelector((state) => state.taskbox);
+
+  const dispatch = useDispatch();
+
+  return {
+    tasks,
+    status,
+    dispatch
+  };
+}
+
+export function TaskList() {
+  /** Get initial state from the store */
+  const { tasks, status, dispatch } = useTaskBox();
+
+  const pinTask = (value) => {
+    dispatch(updateTaskState({ id: value, newTaskState: TASK_PINNED }));
+  }
+
+  const archiveTask = (value) => {
+    dispatch(updateTaskState({ id: value, newTaskState: TASK_ARCHIVED }));
+  }
+
+  if (status === 'loading') {
     return <Loading />
   }
 
@@ -53,26 +89,11 @@ export function TaskList({ tasks, loading, onPinTask, onArchiveTask }) {
     <ul data-testid="task-list">
       {tasksInOrder.map((task) => (
         <li key={task.id}>
-          <Task task={task} onArchiveTask={onArchiveTask} onPinTask={onPinTask} />
+          <Task task={task} onArchiveTask={() => archiveTask(task.id)} onPinTask={() => pinTask(task.id)} />
         </li>
       ))}
     </ul>
   );
 }
-
-TaskList.propTypes = {
-  /** The list of tasks to be rendered */
-  tasks: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-  /** Whether tasks are still being loaded or not */
-  loading: PropTypes.bool,
-  /** Event that changes a task state to pinned */
-  onPinTask: PropTypes.func,
-  /** Event that changes a task state to archived */
-  onArchiveTask: PropTypes.func,
-};
-
-TaskList.defaultProps = {
-  loading: false,
-};
 
 export default TaskList;
