@@ -5,7 +5,7 @@ export const TASK_ARCHIVED = 'TASK_ARCHIVED';
 export const TASK_INBOX = 'TASK_INBOX';
 export const TASK_PINNED = 'TASK_PINNED';
 
-export default function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
+function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
   return (
     <div className={`list-item ${state}`}>
       <label className="checkbox">
@@ -49,3 +49,5 @@ Task.propTypes = {
   onArchiveTask: PropTypes.func,
   onPinTask: PropTypes.func,
 }
+
+export default Task;
