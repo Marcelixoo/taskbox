@@ -41,12 +41,15 @@ function Task({ task: { id, title, state }, onArchiveTask, onPinTask }) {
 }
 
 Task.propTypes = {
+  /** A single task item */
   task: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     state: PropTypes.string.isRequired,
   }),
+  /** Event that changes a task state to archived */
   onArchiveTask: PropTypes.func,
+  /** Event that changes a task state to pinned */
   onPinTask: PropTypes.func,
 }
 
