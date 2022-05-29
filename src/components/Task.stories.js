@@ -15,7 +15,7 @@ Default.args = {
     id: '1',
     title: 'Testing task',
     state: TASK_INBOX,
-    updatedAt: new Date(2022, 0, 1, 9, 0),
+    updatedAt: (new Date(2022, 0, 1, 9, 0)).toDateString(),
   },
 };
 
