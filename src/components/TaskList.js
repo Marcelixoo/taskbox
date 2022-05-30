@@ -6,6 +6,12 @@ import Task, { TASK_ARCHIVED, TASK_INBOX, TASK_PINNED } from './Task';
 
 import { updateTaskState } from '../store';
 
+const orderedTasks = (tasks) => ([
+  ...tasks.filter((t) => t.state === TASK_PINNED),
+  ...tasks.filter((t) => t.state === TASK_INBOX),
+  ...tasks.filter((t) => t.state === TASK_ARCHIVED),
+])
+
 const LoadingRow = () => (
   <div className="loading-item">
     <span className="glow-checkbox" />
@@ -38,16 +44,7 @@ const Empty = () => (
 
 function useTaskBox() {
   /** Get initial state from the store */
-  const tasks = useSelector((state) => {
-    const tasksInOrder = [
-      ...state.taskbox.tasks.filter((t) => t.state === TASK_PINNED),
-      ...state.taskbox.tasks.filter((t) => t.state !== TASK_PINNED),
-    ];
-    const filteredTasks = tasksInOrder.filter(
-      (t) => [TASK_INBOX, TASK_PINNED, TASK_ARCHIVED].includes(t.state)
-    );
-    return filteredTasks;
-  });
+  const tasks = useSelector((state) => orderedTasks(state.taskbox.tasks));
 
   const { status } = useSelector((state) => state.taskbox);
 
@@ -85,15 +82,9 @@ export function TaskList() {
     return <Empty />;
   }
 
-  const tasksInOrder = [
-    ...tasks.filter((t) => t.state === TASK_PINNED),
-    ...tasks.filter((t) => t.state === TASK_INBOX),
-    ...tasks.filter((t) => t.state === TASK_ARCHIVED),
-  ];
-
   return (
     <ul data-testid="task-list">
-      {tasksInOrder.map((task) => (
+      {orderedTasks(tasks).map((task) => (
         <Task key={task.id} task={task} onArchiveTask={archiveTask} onPinTask={pinTask} />
       ))}
     </ul>
