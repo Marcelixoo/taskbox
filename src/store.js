@@ -1,6 +1,6 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { TASK_INBOX } from "./components/Task";
+import { TASK_ARCHIVED, TASK_INBOX } from "./components/Task";
 
 /** Initial state of our store */
 const initialTasks = [
@@ -14,6 +14,23 @@ const TaskBoxInitialState = {
   status: 'idle',
   error: null,
 };
+
+export const endpoint = 'https://jsonplaceholder.typicode.com/todos?userId=1';
+
+/*
+ * Creates an asyncThunk to fetch tasks from a remote endpoint.
+ * You can read more about Redux Toolkit's thunks in the docs:
+ * https://redux-toolkit.js.org/api/createAsyncThunk
+ */
+export const loadTasks = createAsyncThunk('todos/load',async () => {
+  const response = await fetch(endpoint);
+  const data = await response.json();
+  return data.map((task) => ({
+    id: `${task.id}`,
+    title: task.title,
+    state: task.completed ? TASK_ARCHIVED : TASK_INBOX,
+  }));
+});
 
 /** Store creation is handled here (see https://redux-toolkit.js.org/api/createSlice) */
 export const TasksSlice = createSlice({
@@ -33,6 +50,29 @@ export const TasksSlice = createSlice({
         return task;
       });
     }
+  },
+
+  /*
+   * Extends the reducer for the async actions
+   * You can read more about it at https://redux-toolkit.js.org/api/createAsyncThunk
+   */
+  extraReducers(builder) {
+    builder
+      .addCase(loadTasks.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+        state.tasks = [];
+      })
+      .addCase(loadTasks.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.error = null;
+        state.tasks = action.payload;
+      })
+      .addCase(loadTasks.rejected, (state) => {
+        state.status = 'failed';
+        state.error = 'Oh snap... something went wrong';
+        state.tasks = [];
+      })
   }
 });
 
