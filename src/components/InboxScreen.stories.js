@@ -51,7 +51,6 @@ Default.parameters = {
     handlers: [
       rest.get(endpoint, (_, res, ctx) => {
         return res(
-          ctx.delay(800),
           ctx.json(MockedState.tasks)
         );
       }),
