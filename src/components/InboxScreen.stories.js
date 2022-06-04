@@ -25,7 +25,7 @@ export default {
 
 const waitForTasksToLoad = async (canvas) => {
   await waitForElementToBeRemoved(await canvas.findByTestId('loading'), {
-    timeout: 1000,
+    timeout: 2000,
   })
 }
 
