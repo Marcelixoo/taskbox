@@ -8,7 +8,7 @@ export const TASK_PINNED = 'TASK_PINNED';
 function Task({ task, onArchiveTask, onPinTask }) {
   const { id, title, state } = task;
   return (
-    <li data-testid={`task-${id}`} className={`list-item ${state}`}>
+    <li data-testid={`task-${id}`} className={`list-item ${state}`} style={{ background: 'red' }}>
       <label className="checkbox">
         <input
           data-testid={`input-${id}`}
