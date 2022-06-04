@@ -1,5 +1,326 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Screens/InboxScreen Default 1`] = `
+<div
+  className="page lists-show"
+>
+  <nav>
+    <h1
+      className="title-page"
+    >
+      <span
+        className="title-wrapper"
+      >
+        Taskbox
+      </span>
+    </h1>
+  </nav>
+  <ul
+    data-testid="task-list"
+  >
+    <li
+      className="list-item TASK_INBOX"
+      data-testid="task-1"
+    >
+      <label
+        className="checkbox"
+      >
+        <input
+          checked={false}
+          data-testid="input-1"
+          disabled={true}
+          name="checked"
+          type="checkbox"
+        />
+        <span
+          aria-label="archiveTask-1"
+          className="checkbox-custom"
+          data-testid="clickable-1"
+          id="archiveTask-1"
+          onClick={[Function]}
+        />
+      </label>
+      <label
+        className="title"
+      >
+        <input
+          data-testid="title-1"
+          placeholder="Input title"
+          readOnly={true}
+          type="text"
+          value="Testing task"
+        />
+      </label>
+      <div
+        className="actions"
+        onClick={[Function]}
+      >
+        <a
+          onClick={[Function]}
+        >
+          <span
+            aria-label="pinTask-1"
+            className="icon-star"
+            id="pinTask-1"
+          />
+        </a>
+      </div>
+    </li>
+    <li
+      className="list-item TASK_INBOX"
+      data-testid="task-2"
+    >
+      <label
+        className="checkbox"
+      >
+        <input
+          checked={false}
+          data-testid="input-2"
+          disabled={true}
+          name="checked"
+          type="checkbox"
+        />
+        <span
+          aria-label="archiveTask-2"
+          className="checkbox-custom"
+          data-testid="clickable-2"
+          id="archiveTask-2"
+          onClick={[Function]}
+        />
+      </label>
+      <label
+        className="title"
+      >
+        <input
+          data-testid="title-2"
+          placeholder="Input title"
+          readOnly={true}
+          type="text"
+          value="Testing task"
+        />
+      </label>
+      <div
+        className="actions"
+        onClick={[Function]}
+      >
+        <a
+          onClick={[Function]}
+        >
+          <span
+            aria-label="pinTask-2"
+            className="icon-star"
+            id="pinTask-2"
+          />
+        </a>
+      </div>
+    </li>
+    <li
+      className="list-item TASK_INBOX"
+      data-testid="task-3"
+    >
+      <label
+        className="checkbox"
+      >
+        <input
+          checked={false}
+          data-testid="input-3"
+          disabled={true}
+          name="checked"
+          type="checkbox"
+        />
+        <span
+          aria-label="archiveTask-3"
+          className="checkbox-custom"
+          data-testid="clickable-3"
+          id="archiveTask-3"
+          onClick={[Function]}
+        />
+      </label>
+      <label
+        className="title"
+      >
+        <input
+          data-testid="title-3"
+          placeholder="Input title"
+          readOnly={true}
+          type="text"
+          value="Testing task"
+        />
+      </label>
+      <div
+        className="actions"
+        onClick={[Function]}
+      >
+        <a
+          onClick={[Function]}
+        >
+          <span
+            aria-label="pinTask-3"
+            className="icon-star"
+            id="pinTask-3"
+          />
+        </a>
+      </div>
+    </li>
+    <li
+      className="list-item TASK_INBOX"
+      data-testid="task-4"
+    >
+      <label
+        className="checkbox"
+      >
+        <input
+          checked={false}
+          data-testid="input-4"
+          disabled={true}
+          name="checked"
+          type="checkbox"
+        />
+        <span
+          aria-label="archiveTask-4"
+          className="checkbox-custom"
+          data-testid="clickable-4"
+          id="archiveTask-4"
+          onClick={[Function]}
+        />
+      </label>
+      <label
+        className="title"
+      >
+        <input
+          data-testid="title-4"
+          placeholder="Input title"
+          readOnly={true}
+          type="text"
+          value="Testing task"
+        />
+      </label>
+      <div
+        className="actions"
+        onClick={[Function]}
+      >
+        <a
+          onClick={[Function]}
+        >
+          <span
+            aria-label="pinTask-4"
+            className="icon-star"
+            id="pinTask-4"
+          />
+        </a>
+      </div>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Storyshots Screens/InboxScreen Error 1`] = `
+<div
+  className="page lists-show"
+>
+  <nav>
+    <h1
+      className="title-page"
+    >
+      <span
+        className="title-wrapper"
+      >
+        Taskbox
+      </span>
+    </h1>
+  </nav>
+  <div
+    className="list-items"
+    data-testid="loading"
+  >
+    <div
+      className="loading-item"
+    >
+      <span
+        className="glow-checkbox"
+      />
+      <span
+        className="glow-text"
+      >
+        <span>
+          Loading cool state
+        </span>
+      </span>
+    </div>
+    <div
+      className="loading-item"
+    >
+      <span
+        className="glow-checkbox"
+      />
+      <span
+        className="glow-text"
+      >
+        <span>
+          Loading cool state
+        </span>
+      </span>
+    </div>
+    <div
+      className="loading-item"
+    >
+      <span
+        className="glow-checkbox"
+      />
+      <span
+        className="glow-text"
+      >
+        <span>
+          Loading cool state
+        </span>
+      </span>
+    </div>
+    <div
+      className="loading-item"
+    >
+      <span
+        className="glow-checkbox"
+      />
+      <span
+        className="glow-text"
+      >
+        <span>
+          Loading cool state
+        </span>
+      </span>
+    </div>
+    <div
+      className="loading-item"
+    >
+      <span
+        className="glow-checkbox"
+      />
+      <span
+        className="glow-text"
+      >
+        <span>
+          Loading cool state
+        </span>
+      </span>
+    </div>
+    <div
+      className="loading-item"
+    >
+      <span
+        className="glow-checkbox"
+      />
+      <span
+        className="glow-text"
+      >
+        <span>
+          Loading cool state
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Task Archived 1`] = `
 <li
   className="list-item TASK_ARCHIVED"
