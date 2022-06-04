@@ -10,7 +10,7 @@ import {
   waitForElementToBeRemoved
 } from '@storybook/testing-library';
 
-import store, { endpoint } from '../store';
+import store from '../store';
 
 import { MockedState } from './TaskList.stories';
 
@@ -42,6 +42,8 @@ const archiveOneTask = (canvas) => {
 }
 
 const Template = () => <InboxScreen />;
+
+const endpoint = 'https://jsonplaceholder.typicode.com/todos';
 
 export const Default = Template.bind({});
 Default.parameters = {
